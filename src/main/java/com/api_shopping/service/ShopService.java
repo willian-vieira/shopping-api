@@ -1,11 +1,13 @@
 package com.api_shopping.service;
 
 import com.api_shopping.dto.ShopDTO;
+import com.api_shopping.dto.ShopReportDTO;
 import com.api_shopping.entities.Shop;
 import com.api_shopping.repository.IShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -83,5 +85,30 @@ public class ShopService {
 
         shop = shopRepository.save(shop);
         return ShopDTO.convertToShopDTO(shop);
+    }
+
+    /**
+     * Busca uma Compra por filtros personalizados (dataInicio, dataFim, valorMinimo)
+     * @param dataInicio
+     * @param dataFim
+     * @param valorMinimo
+     * @return ShopDTO
+     */
+    public List<ShopDTO> getShopByFiler(Date dataInicio, Date dataFim, Float valorMinimo) {
+        List<Shop> shops = shopRepository.getShopByFilters(dataInicio, dataFim, valorMinimo);
+        return shops
+            .stream()
+            .map(ShopDTO::convertToShopDTO)
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * Gera Relatório por Data (dataInicio, dataFim)
+     * @param dataInicio
+     * @param dataFim
+     * @return ShopReportDTO
+     */
+    public ShopReportDTO getReportByDate(Date dataInicio, Date dataFim) {
+        return shopRepository.getReportByDate(dataInicio, dataFim);
     }
 }
