@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public class ReportRepositoryImpl implements IReportRepository {
+public class IReportRepositoryImpl implements IReportRepository {
     @PersistenceContext
     private EntityManager entityManager;
 

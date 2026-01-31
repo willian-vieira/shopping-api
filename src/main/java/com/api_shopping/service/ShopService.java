@@ -94,7 +94,7 @@ public class ShopService {
      * @param valorMinimo
      * @return ShopDTO
      */
-    public List<ShopDTO> getShopByFiler(Date dataInicio, Date dataFim, Float valorMinimo) {
+    public List<ShopDTO> getShopByFilters(Date dataInicio, Date dataFim, Float valorMinimo) {
         List<Shop> shops = shopRepository.getShopByFilters(dataInicio, dataFim, valorMinimo);
         return shops
             .stream()

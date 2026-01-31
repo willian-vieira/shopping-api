@@ -39,6 +39,10 @@ public class ShopDTO {
         return itemDTOS;
     }
 
+    public void setItemDTOS(List<ItemDTO> itemDTOS) {
+        this.itemDTOS = itemDTOS;
+    }
+
     public static ShopDTO convertToShopDTO(Shop shop) {
         ShopDTO shopDTO = new ShopDTO();
         shopDTO.setUserIdentifier(shop.getUserIdentifier());

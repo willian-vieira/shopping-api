@@ -15,6 +15,11 @@ public class ShopController {
     @Autowired
     private ShopService shopService;
 
+    @GetMapping("/")
+    public String get() {
+        return "API Running! 🚀";
+    }
+
     @GetMapping("/shopping")
     public List<ShopDTO> getShops() {
         List<ShopDTO> products = this.shopService.getAll();
@@ -44,7 +49,7 @@ public class ShopController {
         return this.shopService.save(shopDTO);
     }
 
-    @GetMapping("shopping/search")
+    @GetMapping("/shopping/search")
     public List<ShopDTO> getShopsFilter(
         @RequestParam(name = "dataInicio", required = true)
         @DateTimeFormat(pattern = "dd/MM/yyyy") Date dataInicio,
@@ -53,10 +58,10 @@ public class ShopController {
         @RequestParam(name = "valorMinimo", required = false)
         Float valorMinimo
     ) {
-        return shopService.getShopByFiler(dataInicio, dataFim, valorMinimo);
+        return shopService.getShopByFilters(dataInicio, dataFim, valorMinimo);
     }
 
-    @GetMapping("shopping/report")
+    @GetMapping("/shopping/report")
     public ShopReportDTO getReportByDate(
         @RequestParam(name = "dataInicio", required = true)
         @DateTimeFormat(pattern = "dd/MM/yyyy") Date dataInicio,
